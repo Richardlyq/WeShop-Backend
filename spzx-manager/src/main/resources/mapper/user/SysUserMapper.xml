@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.spzx.manager.mapper.SysUserMapper">
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,username userName ,password,name,phone,avatar,description,status,create_time,update_time,is_deleted
+    </sql>
+
+    <select id="selectByUserName" resultType="com.atguigu.spzx.model.entity.system.SysUser">
+        select <include refid="columns" /> from sys_user where username = #{userName} and is_deleted = 0
+    </select>
+
+    <!--用户列表分页查询并显示 findByPage-->
+    <select id="findByPage" resultType="com.atguigu.spzx.model.entity.system.SysUser">
+        select <include refid="columns"/> from sys_user
+        <where>
+            <if test="keyword != null and keyword != ''">
+                and username like concat('%', #{keyword}, '%')
+            </if>
+            <if test="createTimeBegin != null and createTimeBegin != ''">
+                and create_time >= #{createTimeBegin}
+            </if>
+            <if test="createTimeEnd != null and createTimeEnd != ''">
+                and create_time &lt;= #{createTimeEnd}
+            </if>
+            and is_deleted = 0
+        </where>
+        order by id desc
+    </select>
+
+    <!--根据用户姓名查询 findByUserName-->
+    <select id="findByUserName" resultType="com.atguigu.spzx.model.entity.system.SysUser">
+        select <include refid="columns"/> from sys_user where username = #{userName}
+    </select>
+
+    <!--插入用户数据 saveSysUser-->
+    <insert id="saveSysUser">
+        insert into sys_user (
+            id,
+            username,
+            password,
+            name,
+            phone,
+            avatar,
+            description,
+            status
+        ) values (
+                     #{id},
+                     #{userName},
+                     #{password},
+                     #{name},
+                     #{phone},
+                     #{avatar},
+                     #{description},
+                     #{status}
+                 )
+    </insert>
+
+    <!--删除用户数据deleteById-->
+    <update id="deleteById">
+        update sys_user set
+        update_time = now(),
+        is_deleted = 1
+        where id = #{userId}
+    </update>
+
+    <!--修改用户数据 updateSysUser-->
+    <update id="updateSysUser">
+        update sys_user set
+        <if test="userName != null and userName != ''">
+            username = #{userName},
+        </if>
+        <if test="password != null and password != ''">
+            password = #{password},
+        </if>
+        <if test="name != null and name != ''">
+            name = #{name},
+        </if>
+        <if test="phone != null and phone != ''">
+            phone = #{phone},
+        </if>
+        <if test="description != null and description != ''">
+            description = #{description},
+        </if>
+        <if test="status != null and status != ''">
+            status = #{status},
+        </if>
+        update_time = now()
+        where id = #{id}
+    </update>
+</mapper>

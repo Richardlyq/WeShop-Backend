@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.spzx.manager.mapper.BrandMapper">
+    <resultMap id="brandMap" type="com.atguigu.spzx.model.entity.product.Brand" autoMapping="true">
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,name,logo,create_time,update_time,is_deleted
+    </sql>
+    <!--//品牌的列表功能-->
+    <select id="findByPage" resultMap="brandMap">
+        select <include refid="columns"/>
+        from brand
+        where is_deleted = 0
+        order by id desc
+    </select>
+
+    <!--// 品牌的添加功能save-->
+    <insert id="save">
+        insert into brand(
+            id,
+            name,
+            logo,
+            create_time ,
+            update_time ,
+            is_deleted
+        ) values(
+            #{id},
+            #{name},
+            #{logo},
+            now(),
+            now(),
+            0
+        )
+    </insert>
+
+    <!--//品牌的修改功能updateById-->
+    <update id="updateById">
+        update brand set
+        <if test="name != null and name != ''">
+            name = #{name},
+        </if>
+        <if test="logo != null and logo != ''">
+            logo = #{logo},
+        </if>
+        update_time =  now()
+        where
+        id = #{id}
+    </update>
+
+    <!--//品牌的删除功能deleteById-->
+    <update id="deleteById">
+        update brand set
+        update_time = now(),
+        is_deleted = 1
+        where id = #{id}
+    </update>
+
+</mapper>

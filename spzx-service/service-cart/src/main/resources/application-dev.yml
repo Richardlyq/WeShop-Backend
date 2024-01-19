@@ -1,0 +1,15 @@
+# application-dev.yml
+server:
+  port: 8513
+
+spring:
+  application:
+    name: service-cart
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.234.128:8848
+  data:
+    redis:
+      host: 192.168.234.128
+      port: 6379

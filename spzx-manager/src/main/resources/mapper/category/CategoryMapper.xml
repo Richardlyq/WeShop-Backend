@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.spzx.manager.mapper.CategoryMapper">
+
+    <resultMap id="categoryMap" type="com.atguigu.spzx.model.entity.product.Category" autoMapping="true">
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,name,image_url,parent_id,status,order_num,create_time,update_time,is_deleted
+    </sql>
+
+    <!--//1.根据parentId获取下级分类，返回一个list-->
+    <select id="selectCategoryByParentId" resultMap="categoryMap">
+        select <include refid="columns"/>
+        from category
+        where parent_id = #{parentId}
+        and is_deleted = 0
+        order by id desc
+    </select>
+
+    <!--//2.判断该节点下是否有子节点-->
+    <select id="selectCountByParentId" resultType="Integer">
+        select count(id)
+        from category
+        where parent_id = #{id}
+        and is_deleted = 0
+    </select>
+
+    <!--//3.查询数据库中的所有商品，返回一个list findAllCategory-->
+    <select id="findAllCategory" resultMap="categoryMap">
+        select <include refid="columns"/>
+        from category
+        where is_deleted = 0
+        order by id
+    </select>
+
+    <!--批量导入数据 batchInsert-->
+    <insert id="batchInsert">
+        insert into category (
+        id,
+        name,
+        image_url,
+        parent_id,
+        status,
+        order_num,
+        create_time ,
+        update_time ,
+        is_deleted
+        ) values
+        <foreach collection="categoryList" item="item" separator="," >
+            (
+            #{item.id},
+            #{item.name},
+            #{item.imageUrl},
+            #{item.parentId},
+            #{item.status},
+            #{item.orderNum},
+            now(),
+            now(),
+            0
+            )
+        </foreach>
+    </insert>
+</mapper>

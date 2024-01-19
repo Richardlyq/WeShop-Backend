@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.spzx.manager.mapper.ProductDetailsMapper">
+
+    <resultMap id="productDetailsMap" type="com.atguigu.spzx.model.entity.product.ProductDetails" autoMapping="true"></resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,product_id,image_urls,create_time,update_time,is_deleted
+    </sql>
+
+    <!--//3.商品添加功能，保存商品详情数据到product_details表中-->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into product_details (
+            id,
+            product_id,
+            image_urls,
+            create_time,update_time,is_deleted
+        ) values (
+                     #{id},
+                     #{productId},
+                     #{imageUrls},
+                     now(),
+                     now(),
+                     0
+                 )
+    </insert>
+
+    <!--//3.商品修改功能，根据id查询商品详情数据findProductDetailsById-->
+    <select id="findProductDetailsById" resultMap="productDetailsMap">
+        select <include refid="columns" />
+        from product_details
+        where
+        product_id = #{id}
+    </select>
+
+    <!--//3.商品修改功能，修改商品的详情信息updateProductDetails-->
+    <update id="updateProductDetails">
+        update product_details set
+        <if test="productId != null and productId != ''">
+            product_id = #{productId},
+        </if>
+        <if test="imageUrls != null and imageUrls != ''">
+            image_urls = #{imageUrls},
+        </if>
+        update_time =  now()
+        where
+        id = #{id}
+    </update>
+
+    <!--//3.商品删除功能，删除商品的详情信息 deleteProductDetailsById-->
+    <update id="deleteProductDetailsById">
+        update product_details set
+           update_time = now() ,
+           is_deleted = 1
+        where
+            product_id = #{id}
+    </update>
+
+</mapper>

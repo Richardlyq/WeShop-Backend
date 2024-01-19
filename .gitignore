@@ -1,0 +1,16 @@
+# Project exclude paths
+/spzx-common/common-log/target/
+/spzx-common/common-service/target/
+/spzx-common/common-util/target/
+/spzx-manager/target/
+/spzx-model/target/
+/spzx-server-gateway/target/
+/spzx-service/service-cart/target/
+/spzx-service/service-order/target/
+/spzx-service/service-pay/target/
+/spzx-service/service-product/target/
+/spzx-service/service-user/target/
+/spzx-service-client/service-cart-client/target/
+/spzx-service-client/service-order-client/target/
+/spzx-service-client/service-product-client/target/
+/spzx-service-client/service-user-client/target/

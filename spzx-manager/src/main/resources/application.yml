@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: server-manager
+  profiles:
+    active: dev   # 激活的环境文件
