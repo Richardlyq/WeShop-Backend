@@ -17,21 +17,73 @@
 * （4）C2C，意思就是消费者个人间的电子商务行为，比如闲鱼
 * （5）O2O，即Online To Offline（在线离线/线上到线下），是指将线下的商务机会与互联网结合，让互联网成为线下交易的平台，比如美团优选。
 
+
+
 ## 1.2 业务功能介绍
+
+### 1.2.1 后台管理系统功能
 
 **后台管理系统功能**：主要是平台管理员用来维护系统相关的基础数据。包含用户登录、权限管理、商品管理、商品分类管理、商品规格管理、订单管理等；
 
 线上体验地址：http://spzx-admin.atguigu.cn/
 
-![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401191324701.png)
+* 管理员登录
 
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201006662.png)
 
+* 系统管理-用户管理
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201006719.png)
+
+* 系统管理-角色管理
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201008360.png)
+
+* 系统管理-菜单管理
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201008332.png)
+
+* 商品管理-分类管理
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201010079.png)
+
+* 商品管理-品牌管理
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201011214.png)
+
+* 商品管理-分类品牌
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201011312.png)
+
+* 商品管理-商品规格
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201012715.png)
+
+* 商品管理-商品管理
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201013875.png)
+
+* 订单管理
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201014638.png)
+
+### 1.2.2 前台用户系统功能
 
 **前台用户系统功能**： 主要负责用户的浏览商品和购物过程，包含分类显示、查询商品数据、用户注册登录、购物车模块、订单模块等功能。
 
 线上体验地址：http://spzx.atguigu.cn/
 
+* 用户模块
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201016945.png)
+
+* 商品模块
+
 ![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401191309870.png)
+
+* 订单模块
+
+![](https://richard-1314734543.cos.ap-nanjing.myqcloud.com/liyuqi/pic/202401201020508.png)
 
 
 
@@ -59,11 +111,11 @@
 
 注意：
 
-1、接口：就是一个http的请求地址，接口就规定了请求方式、请求路径、请求参数、响应结果
+1、接口：就是一个http的请求地址，接口就规定了请求方式、请求路径、请求参数、响应结果。
 
-2、在当前的前后端分离开发中前端和后端传输的数据是json格式
+2、在当前的前后端分离开发中前端和后端传输的数据是json格式。
 
-致谢：
+## 致谢
 
 本项目源自尚硅谷【尚品甄选】项目，项目地址：[B站尚品甄选项目地址](https://www.bilibili.com/video/BV1NF411S7DS/?spm_id_from=333.337.search-card.all.click)
 
